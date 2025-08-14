@@ -419,6 +419,73 @@ export default function Home() {
     }
   };
 
+  const animateText10 = () => {
+    const el = document.querySelector("#text10") as HTMLElement;
+    if (el) {
+      const split = SplitText.create(el, { type: "chars" });
+      
+      // Split-flap inspired flying words effect
+      split.chars.forEach((char, index) => {
+        const delay = index * 0.15;
+        
+        // Initial state - normal split-flap position
+        gsap.set(char, { 
+          scale: 1, 
+          opacity: 1, 
+          rotationX: 0,
+          rotationY: 0,
+          rotationZ: 0,
+          x: 0,
+          y: 0,
+          z: 0
+        });
+        
+        // Phase 1: Fly off like ejected from split-flap
+        gsap.to(char, {
+          duration: 0.8,
+          delay,
+          scale: 1.3,
+          opacity: 0.7,
+          rotationX: 180,
+          rotationY: 90,
+          x: (Math.random() - 0.5) * 200,
+          y: (Math.random() - 0.5) * 200,
+          z: (Math.random() - 0.5) * 100,
+          ease: "power2.out",
+          onComplete: () => {
+            // Phase 2: Fly back on with split-flap settling
+            gsap.to(char, {
+              duration: 1.2,
+              scale: 1,
+              opacity: 1,
+              rotationX: 0,
+              rotationY: 0,
+              x: 0,
+              y: 0,
+              z: 0,
+              ease: "elastic.out(1, 0.3)",
+              onComplete: () => {
+                // Phase 3: Final split-flap settle with bounce
+                gsap.to(char, {
+                  duration: 0.4,
+                  scale: 1.05,
+                  ease: "bounce.out",
+                  onComplete: () => {
+                    gsap.to(char, {
+                      duration: 0.3,
+                      scale: 1,
+                      ease: "power2.out"
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+      });
+    }
+  };
+
 
   return (
     <div className='bg-[#000000]'>
@@ -630,6 +697,23 @@ export default function Home() {
               </div>
               <div id="text9" className="text-[#ff6b6b] text-[80px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
                 Tímaflakk
+              </div>
+            </div>
+            <h2>10. Split-flap Flying Words</h2>
+            <div className='flex flex-row gap-10 items-center'>
+              <div>
+                <Image
+                  src="/images/button.png"
+                  alt="button"
+                  width={20}
+                  height={10}
+                  style={{ width: '30px', height: '30px' }}
+                  onClick={animateText10}
+                  className="cursor-pointer"
+                />
+              </div>
+              <div id="text10" className="text-[#00d4ff] text-[60px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
+                Flying splitflap
               </div>
             </div>
 
