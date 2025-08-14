@@ -357,13 +357,13 @@ export default function Home() {
     animateOpszChars("#text3", { start: 40, duration: 1, stagger: 0.2, max: 60, min: 10 });
   };
   const animateText4 = () => {
-      animateOpszChars("#text5", { start: 100, duration: 1, stagger: 0.2, max: 100, min: 70 });
-      animateOpszCharsFromEnd("#text6", { start: 40, duration: 1, stagger: 0.2, max: 60, min: 10 });
-    };
-    const animateText5 = () => {
-      animateOpszChars("#text7", { start: 100, duration: 1, stagger: 0.2, max: 100, min: 70 });
-      animateOpszCharsFromEnd("#text8", { start: 40, duration: 1, stagger: 0.2, max: 60, min: 10 });
-    };
+    animateOpszChars("#text5", { start: 100, duration: 1, stagger: 0.2, max: 100, min: 70 });
+    animateOpszCharsFromEnd("#text6", { start: 40, duration: 1, stagger: 0.2, max: 60, min: 10 });
+  };
+  const animateText5 = () => {
+    animateOpszChars("#text7", { start: 100, duration: 1, stagger: 0.2, max: 100, min: 70 });
+    animateOpszCharsFromEnd("#text8", { start: 40, duration: 1, stagger: 0.2, max: 60, min: 10 });
+  };
 
 
   return (
@@ -380,7 +380,8 @@ export default function Home() {
         ))}
       </div> */}
         <div className='flex flex-row h-full'>
-          <div className='flex flex-col w-full p-2 ml-20 gap-10'>
+          <div className='flex flex-col w-full p-2 ml-20'>
+            <h2>1. Optical size slider</h2>
             <div className='flex flex-row gap-10 items-center'>
               <Image
                 src="/images/button.png"
@@ -416,6 +417,7 @@ export default function Home() {
                 />
               </div>
             </div>
+            <h2>2. Optical size augmentation (from 40 to 100)</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -430,7 +432,7 @@ export default function Home() {
               <p id="text2" className='text-[#ccb3ff]'>Steina</p>
 
             </div>
-
+            <h2>3. Optical size split text augmentation on layered text I</h2>
 
             <div className='flex flex-row gap-10 items-center'>
               <div>
@@ -448,6 +450,7 @@ export default function Home() {
                 <p id="text3" className="text-[#d4f77d] [grid-area:stack]">Steina</p>
               </div>
             </div>
+            <h2>4. Optical size split text augmentation on layered text II</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -464,6 +467,7 @@ export default function Home() {
                 <p id="text6" className="text-[#d4f77d] [grid-area:stack]">Steina</p>
               </div>
             </div>
+            <h2>5. Optical size split text augmentation on layered text II</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -480,6 +484,7 @@ export default function Home() {
                 <p id="text8" className="text-[#d4f77d] [grid-area:stack]">Timaflakk</p>
               </div>
             </div>
+            <h2>6. "Rotation" effect</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -514,6 +519,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
+            <h2>7. Scramble text</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -538,6 +544,7 @@ export default function Home() {
                 Scramble from right to left
               </div>
             </div>
+            <h2>8. Rotating header</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
