@@ -365,6 +365,60 @@ export default function Home() {
     animateOpszCharsFromEnd("#text8", { start: 40, duration: 1, stagger: 0.2, max: 60, min: 10 });
   };
 
+  const animateText9 = () => {
+    const el = document.querySelector("#text9") as HTMLElement;
+    if (el) {
+      const split = SplitText.create(el, { type: "chars" });
+      
+      // Create temporal ripple effect
+      split.chars.forEach((char, index) => {
+        const delay = index * 0.1;
+        
+        // Initial state
+        gsap.set(char, { 
+          scale: 0, 
+          opacity: 0, 
+          rotation: -180,
+          transformOrigin: "center center"
+        });
+        
+        // Temporal ripple animation
+        gsap.to(char, {
+          duration: 2,
+          delay,
+          scale: 1.2,
+          opacity: 1,
+          rotation: 0,
+          ease: "elastic.out(1, 0.3)",
+          onComplete: () => {
+            // Ripple wave effect
+            gsap.to(char, {
+              duration: 1.5,
+              scale: 1,
+              ease: "power2.out"
+            });
+          }
+        });
+        
+        // Split-flap inspired settling effect
+        gsap.to(char, {
+          duration: 1.2,
+          delay: delay + 2.5,
+          rotation: 15,
+          ease: "power2.out",
+          onComplete: () => {
+            // Gentle settle back with bounce
+            gsap.to(char, {
+              duration: 0.8,
+              rotation: 0,
+              ease: "bounce.out"
+            });
+          }
+        });
+      });
+    }
+  };
+
 
   return (
     <div className='bg-[#000000]'>
@@ -503,7 +557,7 @@ export default function Home() {
                         {
                           rotateX: 180,
                           duration: 1.8,
-                          delay: (5 - 1 - index) * 0.15,
+                          delay: ( index) * 0.15,
                           ease: 'power1.in',
                           repeat: -1,
                         }
@@ -515,7 +569,7 @@ export default function Home() {
               </div>
               <div>
                 {word2.split('').map((char, i, arr) => (
-                  <RotatingLetter key={i} letter={char} delay={(arr.length - 1 - i) * 0.15} fontSize={100} color="#b3f0ff" data-rotating />
+                  <RotatingLetter key={i} letter={char} delay={ i * 0.15} fontSize={100} color="#b3f0ff" data-rotating />
                 ))}
               </div>
             </div>
@@ -561,7 +615,23 @@ export default function Home() {
                 <h1>Steina</h1>
               </div>
             </div>
-
+            <h2>9. Tímaflakk - Temporal Ripple</h2>
+            <div className='flex flex-row gap-10 items-center'>
+              <div>
+                <Image
+                  src="/images/button.png"
+                  alt="button"
+                  width={20}
+                  height={10}
+                  style={{ width: '30px', height: '30px' }}
+                  onClick={animateText9}
+                  className="cursor-pointer"
+                />
+              </div>
+              <div id="text9" className="text-[#ff6b6b] text-[80px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
+                Tímaflakk
+              </div>
+            </div>
 
 
           </div>
