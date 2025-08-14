@@ -484,7 +484,7 @@ export default function Home() {
                 <p id="text8" className="text-[#d4f77d] [grid-area:stack]">Timaflakk</p>
               </div>
             </div>
-            <h2>6. "Rotation" effect</h2>
+            <h2>6. Rotation inspired effect</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
