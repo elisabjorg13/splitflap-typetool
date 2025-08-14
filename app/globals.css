@@ -19,8 +19,44 @@
   }
 }
 
+@font-face {
+  font-family: 'Steina Playback VF';
+  src: url('/fonts/Steina Playback VF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
-  background: var(--background);
+  background: #fff;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+p{
+  font-family: 'Steina Playback VF';
+  font-size: 100px;
+  font-variation-settings: 'opsz' 40;
+}
+
+
+.rotatingHeader {
+	margin-bottom:2vw;
+
+	width:fit-content;
+	white-space:nowrap;
+
+}
+
+.rotatingHeader h1{
+	font-family: 'Steina Playback VF';
+	color:#d4f77d;
+	font-size:100px;
+	margin:0;
+	padding:0;
+	line-height:0.5;
+	perspective:600px;
+}
+
+.rotatingHeader h1:nth-child(2) {
+	color: pink;
 }
