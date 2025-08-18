@@ -106,6 +106,65 @@ export default function Home() {
     return () => { tl.kill(); };
   }, []);
 
+  // Simple hover-responsive fluctuation
+  useEffect(() => {
+    const text14 = document.querySelector('#text14') as HTMLElement;
+    if (!text14) return;
+
+    let isHovered = false;
+
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
+    
+    const handleMouseLeave = () => {
+      isHovered = false;
+    };
+
+    text14.addEventListener('mouseenter', handleMouseEnter);
+    text14.addEventListener('mouseleave', handleMouseLeave);
+
+    const animate = () => {
+      const split = SplitText.create(text14, { type: "chars" });
+      const min = isHovered ? 70 : 10;
+      const max = isHovered ? 95 : 30;
+
+      split.chars.forEach((char, index) => {
+        gsap.to(char, {
+          duration: 2,
+          delay: index * 0.3,
+          ease: "power2.out",
+          onUpdate: function() {
+            const progress = this.progress();
+            const value = Math.round(min + (max - min) * progress);
+            (char as HTMLElement).style.fontVariationSettings = `'opsz' ${value}`;
+          },
+          onComplete: () => {
+            gsap.to(char, {
+              duration: 2,
+              ease: "power2.out",
+              onUpdate: function() {
+                const progress = this.progress();
+                const value = Math.round(max - (max - min) * progress);
+                (char as HTMLElement).style.fontVariationSettings = `'opsz' ${value}`;
+              },
+              onComplete: () => {
+                setTimeout(() => animate(), 1000);
+              }
+            });
+          }
+        });
+      });
+    };
+
+    animate();
+
+    return () => {
+      text14.removeEventListener('mouseenter', handleMouseEnter);
+      text14.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
   const playRotatingHeader = () => {
     if (headerTlRef.current) headerTlRef.current.restart();
   };
@@ -605,7 +664,7 @@ export default function Home() {
                 <p id="text8" className="text-[#d4f77d] [grid-area:stack]">Timaflakk</p>
               </div>
             </div>
-            <h2>6. Rotation inspired effect</h2>
+            {/* <h2>6. Rotation inspired effect</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -714,6 +773,133 @@ export default function Home() {
               </div>
               <div id="text10" className="text-[#00d4ff] text-[60px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
                 Flying splitflap
+              </div>
+            </div> */}
+            <h2>6. Interactive Hover Opsz</h2>
+            <div className='flex flex-row gap-10 items-center'>
+              <div className="text-[#d4f77d] text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
+                {word1.split('').map((char, index) => (
+                  <span
+                    key={index}
+                    className="inline-block cursor-pointer hover:scale-110 transition-transform duration-200"
+                    style={{ fontVariationSettings: "'opsz' 100" }}
+                    onMouseEnter={(e) => {
+                      gsap.to(e.currentTarget, {
+                        duration: 0.3,
+                        fontVariationSettings: "'opsz' 65",
+                        ease: "power2.out"
+                      });
+                    }}
+                    onMouseLeave={(e) => {
+                      gsap.to(e.currentTarget, {
+                        duration: 0.3,
+                        fontVariationSettings: "'opsz' 100",
+                        ease: "power2.out"
+                      });
+                    }}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <h2>7. Staggered Opsz Progression</h2>
+            <div className='flex flex-row gap-10 items-center'>
+              <div>
+                <Image
+                  src="/images/button.png"
+                  alt="button"
+                  width={20}
+                  height={10}
+                  style={{ width: '30px', height: '30px' }}
+                  onClick={() => {
+                    const text12 = document.querySelector('#text12') as HTMLElement;
+                    if (text12) {
+                      const split = SplitText.create(text12, { type: "chars" });
+                      const targets = [100, 85, 45, 25, 80, 100]; // S, t, e, i, n, a
+                      
+                      split.chars.forEach((char, index) => {
+                        gsap.to(char, {
+                          duration: 1.5,
+                          delay: index * 0.2,
+                          ease: "power2.out",
+                          onUpdate: function() {
+                            const progress = this.progress();
+                            const startValue = 30;
+                            const endValue = targets[index];
+                            const currentValue = Math.round(startValue + (endValue - startValue) * progress);
+                            (char as HTMLElement).style.fontVariationSettings = `'opsz' ${currentValue}`;
+                          }
+                        });
+                      });
+                    }
+                  }}
+                  className="cursor-pointer"
+                />
+              </div>
+              <div id="text12" className="text-white text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 30" }}>
+                Steina
+              </div>
+            </div>
+            <h2>8. Staggered Opsz + Interactive Hover</h2>
+            <div className='flex flex-row gap-10 items-center'>
+              <div>
+                <Image
+                  src="/images/button.png"
+                  alt="button"
+                  width={20}
+                  height={10}
+                  style={{ width: '30px', height: '30px' }}
+                  onClick={() => {
+                    const text13 = document.querySelector('#text13') as HTMLElement;
+                    if (text13) {
+                      const split = SplitText.create(text13, { type: "chars" });
+                      const targets = [100, 85, 45, 25, 80, 100]; // S, t, e, i, n, a
+                      
+                      split.chars.forEach((char, index) => {
+                        gsap.to(char, {
+                          duration: 1.5,
+                          delay: index * 0.2,
+                          ease: "power2.out",
+                          onUpdate: function() {
+                            const progress = this.progress();
+                            const startValue = 30;
+                            const endValue = targets[index];
+                            const currentValue = Math.round(startValue + (endValue - startValue) * progress);
+                            (char as HTMLElement).style.fontVariationSettings = `'opsz' ${currentValue}`;
+                          }
+                        });
+                      });
+                    }
+                  }}
+                  className="cursor-pointer"
+                />
+              </div>
+              <div id="text13" className="text-[#d4f77d] text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 30" }}>
+                {word1.split('').map((char, index) => (
+                  <span
+                    key={index}
+                    className="inline-block cursor-pointer hover:scale-110 transition-transform duration-200"
+                    style={{ fontVariationSettings: "'opsz' 30" }}
+                    onMouseEnter={(e) => {
+                      const targets = [100, 85, 45, 25, 80, 100]; // S, t, e, i, n, a
+                      gsap.to(e.currentTarget, {
+                        duration: 0.3,
+                        fontVariationSettings: `'opsz' ${targets[index]}`,
+                        ease: "power2.out"
+                      });
+                    }}
+                    onMouseLeave={(e) => {
+                      gsap.to(e.currentTarget, {
+                        duration: 0.3,
+                        fontVariationSettings: "'opsz' 30",
+                        ease: "power2.out"
+                      });
+                    }}
+                  >
+                    {char}
+                  </span>
+                ))}
               </div>
             </div>
 
