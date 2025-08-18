@@ -781,7 +781,7 @@ export default function Home() {
                 {word1.split('').map((char, index) => (
                   <span
                     key={index}
-                    className="inline-block cursor-pointer hover:scale-110 transition-transform duration-200"
+                    className="inline-block cursor-pointer transition-transform duration-200"
                     style={{ fontVariationSettings: "'opsz' 100" }}
                     onMouseEnter={(e) => {
                       gsap.to(e.currentTarget, {
@@ -879,8 +879,14 @@ export default function Home() {
                 {word1.split('').map((char, index) => (
                   <span
                     key={index}
-                    className="inline-block cursor-pointer hover:scale-110 transition-transform duration-200"
-                    style={{ fontVariationSettings: "'opsz' 30" }}
+                    className="inline-block cursor-pointer transition-transform duration-200"
+                    style={{ 
+                      fontVariationSettings: "'opsz' 30",
+                      width: '1ch', // Force fixed width
+                      display: 'inline-block',
+                      textAlign: 'center',
+                      overflow: 'hidden'
+                    }}
                     onMouseEnter={(e) => {
                       const targets = [100, 85, 45, 25, 80, 100]; // S, t, e, i, n, a
                       gsap.to(e.currentTarget, {
