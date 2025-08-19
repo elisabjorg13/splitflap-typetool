@@ -548,7 +548,7 @@ export default function Home() {
 
   return (
     <div className='bg-[#000000]'>
-      <div className="">
+      <div className="vh-100vh w-100vw">
         {/* <div>
         {word1.split('').map((char, i, arr) => (
           <RotatingLetter key={i} letter={char} delay={(arr.length - 1 - i) * 0.15} fontSize={100} color="#000" />
@@ -560,8 +560,8 @@ export default function Home() {
         ))}
       </div> */}
         <div className='flex flex-row h-full'>
-          <div className='flex flex-col w-full p-2 ml-20'>
-            <h2>1. Optical size slider</h2>
+          <div className='flex flex-col w-full p-2 ml-20 mt-20'>
+            {/* <h2>1. Optical size slider</h2>
             <div className='flex flex-row gap-10 items-center'>
               <Image
                 src="/images/button.png"
@@ -663,7 +663,7 @@ export default function Home() {
                 <p id="text7" className="text-[#646464] [grid-area:stack]" style={{ fontVariationSettings: "'opsz' 100" }}>Playback</p>
                 <p id="text8" className="text-[#d4f77d] [grid-area:stack]">Timaflakk</p>
               </div>
-            </div>
+            </div> */}
             {/* <h2>6. Rotation inspired effect</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
@@ -775,7 +775,7 @@ export default function Home() {
                 Flying splitflap
               </div>
             </div> */}
-            <h2>6. Interactive Hover Opsz</h2>
+            <h2> Interactive Hover Opsz</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div className="text-[#d4f77d] text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
                 {word1.split('').map((char, index) => (
@@ -803,7 +803,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <h2>7. Staggered Opsz Progression</h2>
+            {/* <h2>7. Staggered Opsz Progression</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -840,8 +840,8 @@ export default function Home() {
               <div id="text12" className="text-white text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 30" }}>
                 Steina
               </div>
-            </div>
-            <h2>8. Staggered Opsz + Interactive Hover</h2>
+            </div> */}
+            {/* <h2>8. Staggered Opsz + Interactive Hover</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -907,7 +907,7 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </div>
+            </div> */}
 
 
           </div>
