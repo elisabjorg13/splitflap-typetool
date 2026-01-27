@@ -26,21 +26,21 @@ type RotatingLetterProps = {
 function RotatingLetter({ letter, delay = 0, fontSize = 80, color = '#000' }: RotatingLetterProps) {
   const ref = useRef<HTMLSpanElement>(null);
 
-  // useEffect(() => {
-  //   if (ref.current) {
-  //     gsap.fromTo(
-  //       ref.current,
-  //       { rotateX: 0 },
-  //       {
-  //         rotateX: 180,
-  //         duration: 1.8,
-  //         delay,
-  //         ease: 'power1.in',
-  //         repeat: -1,
-  //       }
-  //     );
-  //   }
-  // }, [delay]);
+  useEffect(() => {
+    if (ref.current) {
+      gsap.fromTo(
+        ref.current,
+        { rotateX: 0 },
+        {
+          rotateX: 180,
+          duration: 1.8,
+          delay,
+          ease: 'power1.in',
+          repeat: -1,
+        }
+      );
+    }
+  }, [delay]);
 
   return (
     <span
@@ -549,7 +549,7 @@ export default function Home() {
   return (
     <div className='bg-[#000000]'>
       <div className="vh-100vh w-100vw">
-        {/* <div>
+        <div>
         {word1.split('').map((char, i, arr) => (
           <RotatingLetter key={i} letter={char} delay={(arr.length - 1 - i) * 0.15} fontSize={100} color="#000" />
         ))}
@@ -558,223 +558,10 @@ export default function Home() {
         {word2.split('').map((char, i, arr) => (
           <RotatingLetter key={i} letter={char} delay={(arr.length - 1 - i) * 0.15} fontSize={100} color="#888" />
         ))}
-      </div> */}
+      </div> 
         <div className='flex flex-row h-full'>
           <div className='flex flex-col w-full p-2 ml-20 mt-20'>
-            {/* <h2>1. Optical size slider</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <Image
-                src="/images/button.png"
-                alt="button"
-                width={20}
-                height={10}
-                style={{ width: '30px', height: '30px' }}
-                onClick={animateSlider}
-                className={`cursor-pointer ${isAnimating ? 'opacity-50' : ''}`}
-              />
-              <p id="text1" className='text-gray-300'>Steina</p>
-
-
-              <div className="mb-4 p-4">
-                <label htmlFor="opsz-slider" className="block text-sm font-medium text-gray-700 mb-2">
-                  Optical Size (opsz): <span id="opsz-value">{sliderValue}</span>
-                </label>
-                <input
-                  id="opsz-slider"
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={sliderValue || 40}
-                  className="w-60 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    setSliderValue(value);
-                    const paragraph = document.querySelector('#text1') as HTMLElement;
-                    if (paragraph) {
-                      paragraph.style.fontVariationSettings = `'opsz' ${value}`;
-                    }
-                  }}
-                />
-              </div>
-            </div>
-            <h2>2. Optical size augmentation (from 40 to 100)</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={animateText2}
-                />
-              </div>
-              <p id="text2" className='text-[#ccb3ff]'>Steina</p>
-
-            </div>
-            <h2>3. Optical size split text augmentation on layered text I</h2>
-
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={animateText3}
-                />
-              </div>
-              <div className=" grid place-items-left [grid-template-areas:'stack']">
-                <p className="text-[#646464] [grid-area:stack]" style={{ fontVariationSettings: "'opsz' 100" }}>Steina</p>
-                <p id="text3" className="text-[#d4f77d] [grid-area:stack]">Steina</p>
-              </div>
-            </div>
-            <h2>4. Optical size split text augmentation on layered text II</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={animateText4}
-                />
-              </div>
-              <div className=" grid place-items-left [grid-template-areas:'stack']">
-                <p id="text5" className="text-[#646464] [grid-area:stack]" style={{ fontVariationSettings: "'opsz' 100" }}>Steina</p>
-                <p id="text6" className="text-[#d4f77d] [grid-area:stack]">Steina</p>
-              </div>
-            </div>
-            <h2>5. Optical size split text augmentation on layered text II</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={animateText5}
-                />
-              </div>
-              <div className=" grid place-items-left [grid-template-areas:'stack']">
-                <p id="text7" className="text-[#646464] [grid-area:stack]" style={{ fontVariationSettings: "'opsz' 100" }}>Playback</p>
-                <p id="text8" className="text-[#d4f77d] [grid-area:stack]">Timaflakk</p>
-              </div>
-            </div> */}
-            {/* <h2>6. Rotation inspired effect</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button3"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={() => {
-                    // Trigger RotatingLetter animation
-                    const rotatingLetters = document.querySelectorAll('[data-rotating]');
-                    rotatingLetters.forEach((letter, index) => {
-                      gsap.fromTo(
-                        letter,
-                        { rotateX: 0 },
-                        {
-                          rotateX: 180,
-                          duration: 1.8,
-                          delay: ( index) * 0.15,
-                          ease: 'power1.in',
-                          repeat: -1,
-                        }
-                      );
-                    });
-                  }}
-                  className="cursor-pointer"
-                />
-              </div>
-              <div>
-                {word2.split('').map((char, i, arr) => (
-                  <RotatingLetter key={i} letter={char} delay={ i * 0.15} fontSize={100} color="#b3f0ff" data-rotating />
-                ))}
-              </div>
-            </div>
-            <h2>7. Scramble text</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={() => {
-                    gsap.to("#text4", {
-                      duration: 5,
-                      scrambleText: {
-                        text: "Scramble from right to left",
-                        rightToLeft: true,
-                        chars: "lowercase"
-                      }
-                    });
-                  }}
-                />
-              </div>
-              <div id="text4" className="text-gray-300 text-[60px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
-                Scramble from right to left
-              </div>
-            </div>
-            <h2>8. Rotating header</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={playRotatingHeader}
-                />
-
-              </div>
-              <div className="rotatingHeader mt-10">
-                <h1>Steina</h1>
-              </div>
-            </div>
-            <h2>9. Tímaflakk - Temporal Ripple</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={animateText9}
-                  className="cursor-pointer"
-                />
-              </div>
-              <div id="text9" className="text-[#ff6b6b] text-[80px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
-                Tímaflakk
-              </div>
-            </div>
-            <h2>10. Split-flap Flying Words</h2>
-            <div className='flex flex-row gap-10 items-center'>
-              <div>
-                <Image
-                  src="/images/button.png"
-                  alt="button"
-                  width={20}
-                  height={10}
-                  style={{ width: '30px', height: '30px' }}
-                  onClick={animateText10}
-                  className="cursor-pointer"
-                />
-              </div>
-              <div id="text10" className="text-[#00d4ff] text-[60px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
-                Flying splitflap
-              </div>
-            </div> */}
+          
             <h2> Interactive Hover Opsz</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div className="text-[#d4f77d] text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 100" }}>
@@ -803,7 +590,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            {/* <h2>7. Staggered Opsz Progression</h2>
+          <h2>Staggered Opsz Progression</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -840,8 +627,8 @@ export default function Home() {
               <div id="text12" className="text-white text-[100px]" style={{ fontFamily: 'Steina Playback VF', fontVariationSettings: "'opsz' 30" }}>
                 Steina
               </div>
-            </div> */}
-            {/* <h2>8. Staggered Opsz + Interactive Hover</h2>
+            </div> 
+             <h2>8. Staggered Opsz + Interactive Hover</h2>
             <div className='flex flex-row gap-10 items-center'>
               <div>
                 <Image
@@ -907,7 +694,7 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </div> */}
+            </div> 
 
 
           </div>
